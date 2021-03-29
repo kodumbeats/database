@@ -27,6 +27,10 @@ class SQLiteTest extends Base
 
         $pdo = new PDO('sqlite:'. $dbPath);
 
+        // Connection settings
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);   // Return arrays
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);        // Handle all errors with exceptions
+
         $database = new Database(new SQLite($pdo));
         $database->setNamespace('myapp_'.uniqid());
 
