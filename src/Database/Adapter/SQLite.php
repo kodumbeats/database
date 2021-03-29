@@ -107,6 +107,120 @@ class SQLite extends Adapter
     }
 
     /**
+     * Create Attribute
+     * 
+     * @param string $collection
+     * @param string $id
+     * @param string $type
+     * @param int $size
+     * @param bool $array
+     * 
+     * @return bool
+     */
+    public function createAttribute(string $collection, string $id, string $type, int $size, bool $signed = true, bool $array = false): bool
+    {}
+
+    /**
+     * Delete Attribute
+     * 
+     * @param string $collection
+     * @param string $id
+     * @param bool $array
+     * 
+     * @return bool
+     */
+    public function deleteAttribute(string $collection, string $id, bool $array = false): bool
+    {}
+
+    /**
+     * Create Index
+     *
+     * @param string $collection
+     * @param string $id
+     * @param string $type
+     * @param array $attributes
+     * @param array $lengths
+     * @param array $orders
+     *
+     * @return bool
+     */
+    public function createIndex(string $collection, string $id, string $type, array $attributes, array $lengths, array $orders): bool
+    {}
+
+    /**
+     * Delete Index
+     *
+     * @param string $collection
+     * @param string $id
+     *
+     * @return bool
+     */
+    public function deleteIndex(string $collection, string $id): bool
+    {}
+
+    /**
+     * Get Document
+     *
+     * @param string $collection
+     * @param string $id
+     *
+     * @return array
+     */
+    public function getDocument(string $collection, string $id): Document
+    {}
+
+    /**
+     * Create Document
+     *
+     * @param string $collection
+     * @param Document $document
+     *
+     * @return Document
+     */
+    public function createDocument(string $collection, Document $document): Document
+    {}
+
+    /**
+     * Get max STRING limit
+     * 
+     * @return int
+     */
+    public function getStringLimit(): int
+    {}
+
+    /**
+     * Get max INT limit
+     * 
+     * @return int
+     */
+    public function getIntLimit(): int
+    {}
+
+    /**
+     * Is index supported?
+     * 
+     * @return bool
+     */
+    public function getIndexSupport(): bool
+    {}
+
+    /**
+     * Is unique index supported?
+     * 
+     * @return bool
+     */
+    public function getUniqueIndexSupport(): bool
+    {}
+
+    /**
+     * Is fulltext index supported?
+     * 
+     * @return bool
+     */
+    public function getFulltextIndexSupport(): bool
+    {}
+
+    /**
      * @return PDO
      *
      * @throws Exception
