@@ -306,10 +306,10 @@ class Database
 
         $collection = new Document([
             '$id' => $id,
-            '$enforce' => 'document',
             '$read' => ['role:all'],
             '$write' => ['role:all'],
             'name' => $id,
+            'enforce' => 'document',
             'attributes' => $attributes,
             'indexes' => $indexes,
             'attributesInQueue' => [],
