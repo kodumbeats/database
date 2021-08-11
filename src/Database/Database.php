@@ -844,11 +844,13 @@ class Database
     {
         $validator = new Authorization($document, self::PERMISSION_WRITE);
 
-        if (!$validator->isValid($document->getWrite())) { // Check if user has write access to this document
+        $collection = $this->getCollection($collection);
+
+        // User only needs write access on a document when enforcing document permissions
+        if ($collection->getAttribute('enforce') === 'document' &&
+            !$validator->isValid($document->getWrite())) { // Check if user has write access to this document
             throw new AuthorizationException($validator->getDescription());
         }
-
-        $collection = $this->getCollection($collection);
 
         $document
             ->setAttribute('$id', empty($document->getId()) ? $this->getId(): $document->getId())
@@ -895,11 +897,14 @@ class Database
 
         $validator = new Authorization($old, 'write');
 
-        if (!$validator->isValid($old->getWrite())) { // Check if user has write access to this document
+        // User only needs write access on a document when enforcing document permissions
+        if ($collection->getAttribute('enforce') === 'document' &&
+            !$validator->isValid($old->getWrite())) { // Check if user has write access to this document
             throw new AuthorizationException($validator->getDescription());
         }
 
-        if (!$validator->isValid($document->getWrite())) { // Check if user has write access to this document
+        if ($collection->getAttribute('enforce') === 'document' &&
+            !$validator->isValid($document->getWrite())) { // Check if user has write access to this document
             throw new AuthorizationException($validator->getDescription());
         }
 
