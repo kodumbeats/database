@@ -86,6 +86,15 @@ class Database
                 'filters' => [],
             ],
             [
+                '$id' => 'enforce',
+                'type' => self::VAR_STRING,
+                'size' => 10,
+                'required' => true,
+                'signed' => true,
+                'array' => false,
+                'filters' => [],
+            ],
+            [
                 '$id' => 'attributes',
                 'type' => self::VAR_STRING,
                 'size' => 1000000,
@@ -236,6 +245,7 @@ class Database
             ]);
         }, [ // Array of [$id, $type, $size, $required]
             ['name', self::VAR_STRING, 512, true],
+            ['enforce', self::VAR_STRING, 10, true],
             ['attributes', self::VAR_STRING, 1000000, false],
             ['indexes', self::VAR_STRING, 1000000, false],
             ['attributesInQueue', self::VAR_STRING, 1000000, false],
@@ -296,6 +306,7 @@ class Database
 
         $collection = new Document([
             '$id' => $id,
+            '$enforce' => 'document',
             '$read' => ['role:all'],
             '$write' => ['role:all'],
             'name' => $id,
