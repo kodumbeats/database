@@ -75,6 +75,7 @@ class Database
         '$id' => self::COLLECTIONS,
         '$collection' => self::COLLECTIONS,
         'name' => 'collections',
+        'enforce' => 'collection',
         'attributes' => [
             [
                 '$id' => 'name',
